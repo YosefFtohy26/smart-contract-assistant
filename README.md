@@ -1,7 +1,3 @@
-Below is a comprehensive `README.md` for your Smart Contract Assistant project, tailored to the code and structure you've shared. It explains everything a new user needs to clone, set up, and run the application, including the backend API, the Gradio UI, and the evaluation script.
-
----
-
 ```markdown
 # 📜 Smart Contract Assistant – RAG with Local LLM
 
@@ -31,8 +27,6 @@ smart-contract-assistant/
 │   └── processing.py     # Chunking and vector store insertion
 ├── ui/
 │   └── gradio_app.py     # Simple chat UI
-├── evaluation/
-│   └── eval_tests.py     # Golden‑set evaluation with semantic similarity
 ├── vectorstore/          # Persisted Chroma database (created at runtime)
 ├── uploaded_docs/        # Temporary storage for uploaded files
 ├── requirements.txt
@@ -53,7 +47,7 @@ smart-contract-assistant/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/smart-contract-assistant.git
+git clone https://github.com/YosefFothy26/smart-contract-assistant.git
 cd smart-contract-assistant
 ```
 
