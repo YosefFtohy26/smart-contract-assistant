@@ -9,9 +9,6 @@ from ingestion.processing import create_chunks, store_in_vector_db
 remote_chain = RemoteRunnable("http://localhost:8000/contract-qa")
 
 
-# -----------------------------
-# 1️⃣ File Ingestion
-# -----------------------------
 def process_file(file):
 
     if file is None:
@@ -33,9 +30,6 @@ def process_file(file):
         return f"❌ Error during ingestion: {str(e)}"
 
 
-# -----------------------------
-# 2️⃣ Chat Function
-# -----------------------------
 def chat_with_assistant(message, chat_history, session_id):
 
     if not message:
@@ -57,9 +51,6 @@ def chat_with_assistant(message, chat_history, session_id):
     return "", chat_history
 
 
-# -----------------------------
-# 3️⃣ UI Layout
-# -----------------------------
 with gr.Blocks(title="Smart Contract Assistant") as demo:
 
     gr.Markdown("# 📜 Smart Contract Summary & Q&A Assistant")
@@ -69,9 +60,6 @@ with gr.Blocks(title="Smart Contract Assistant") as demo:
 
     with gr.Tabs():
 
-        # -------------------------
-        # Upload Tab
-        # -------------------------
         with gr.TabItem("1️⃣ Upload Contract"):
             file_input = gr.File(
                 label="Upload PDF or DOCX",
@@ -87,9 +75,6 @@ with gr.Blocks(title="Smart Contract Assistant") as demo:
                 outputs=upload_status
             )
 
-        # -------------------------
-        # Chat Tab
-        # -------------------------
         with gr.TabItem("2️⃣ Chat with Contract"):
             chatbot = gr.Chatbot(label="Assistant")
             msg = gr.Textbox(label="Ask a question about the contract")
