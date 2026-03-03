@@ -26,4 +26,4 @@ def store_in_vector_db(chunks, persist_directory="vector_db/chroma_data"):
     vectorstore.add_documents(chunks)
     vectorstore.persist()
 
-    return vectorstore
+    return vectorstore 
