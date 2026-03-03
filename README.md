@@ -1,4 +1,3 @@
-```markdown
 # 📜 Smart Contract Assistant – RAG with Local LLM
 
 A production‑ready **Retrieval‑Augmented Generation (RAG)** system for querying legal contracts.  
