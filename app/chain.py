@@ -28,25 +28,16 @@ from app.utils import (
 )
 
 
-# -------------------------
-# Environment
-# -------------------------
 
 load_dotenv()
 
 PERSIST_DIRECTORY = "vectorstore"
 
-# -------------------------
-# Embeddings (GLOBAL)
-# -------------------------
 
 embeddings = HuggingFaceEmbeddings(
     model_name="all-MiniLM-L6-v2"
 )
 
-# -------------------------
-# Session Memory Store
-# -------------------------
 
 store = {}
 
@@ -55,9 +46,6 @@ def get_session_history(session_id: str):
         store[session_id] = ChatMessageHistory()
     return store[session_id]
 
-# -------------------------
-# Vector Store Loader
-# -------------------------
 
 def get_vectorstore():
     """
@@ -68,9 +56,6 @@ def get_vectorstore():
         embedding_function=embeddings,
     )
 
-# -------------------------
-# Main Conversational RAG Chain
-# -------------------------
 
 def get_conversational_rag_chain():
 
@@ -84,9 +69,6 @@ def get_conversational_rag_chain():
 
     llm = ChatOllama(model="mistral", temperature=0)
 
-    # -------------------------
-    # Query Rephrasing Prompt
-    # -------------------------
 
     rephrase_prompt = ChatPromptTemplate.from_messages([
         MessagesPlaceholder(variable_name="chat_history"),
@@ -100,9 +82,6 @@ def get_conversational_rag_chain():
         rephrase_prompt
     )
 
-    # -------------------------
-    # Answer Prompt
-    # -------------------------
 
     answer_prompt = ChatPromptTemplate.from_messages([
         ("system",
@@ -122,9 +101,6 @@ def get_conversational_rag_chain():
         document_chain
     )
 
-    # -------------------------
-    # Guardrail Layer
-    # -------------------------
 
     def guardrailed_chain(inputs: Dict[str, Any]):
 

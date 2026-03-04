@@ -11,21 +11,12 @@ import os
 
 from app.chain import get_conversational_rag_chain, get_vectorstore
 
-# -------------------------
-# Load Environment
-# -------------------------
 
 load_dotenv()
 
-# -------------------------
-# FastAPI App
-# -------------------------
 
 app = FastAPI(title="Smart Contract Assistant API")
 
-# -------------------------
-# Chat Models
-# -------------------------
 
 class ChatInput(BaseModel):
     input: str
@@ -34,9 +25,6 @@ class ChatInput(BaseModel):
 class ChatOutput(BaseModel):
     answer: str
 
-# -------------------------
-# RAG Chain
-# -------------------------
 
 rag_chain = get_conversational_rag_chain()
 
@@ -48,9 +36,6 @@ add_routes(
     output_type=ChatOutput,
 )
 
-# -------------------------
-# Upload Endpoint
-# -------------------------
 
 @app.post("/upload")
 async def upload_pdf(file: UploadFile = File(...)):
@@ -89,9 +74,6 @@ async def upload_pdf(file: UploadFile = File(...)):
         "message": f"{file.filename} uploaded and indexed successfully."
     }
 
-# -------------------------
-# Run Server
-# -------------------------
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
